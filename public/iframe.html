@@ -1,0 +1,27 @@
+<html>
+<head>
+    <script src="audioplayerengine/jquery.js"></script>
+    <script src="audioplayerengine/amazingaudioplayer.js"></script>
+    <link rel="stylesheet" type="text/css" href="audioplayerengine/initaudioplayer-1.css">
+    <script src="audioplayerengine/initaudioplayer-1.js"></script>
+</head>
+
+<body style="margin: 0 auto;overflow:hidden; ">
+    <iframe src="index.html" frameborder="0" style="overflow:hidden; 
+     display:block; position: absolute; height: 75%; width: 100%"></iframe>
+    <div id="amazingaudioplayer-1" style="display:block;position:absolute;width:100%;height:164px;bottom: 0;">
+        <ul class="amazingaudioplayer-audios" style="display:none;">
+            <li data-artist="Coldplay" data-title="07 - Viva La Vida" data-album="Viva La Vida Or Death And All His Friends" data-info="" data-image="" data-duration="254">
+                <div class="amazingaudioplayer-source" data-src="audios/07%20-%20Viva%20La%20Vida.mp3" data-type="audio/mpeg" ></div>
+            </li>
+        </ul>
+        <div class="amazingaudioplayer-engine"><a href="http://amazingaudioplayer.com"
+                title="music player for website">html5 mp3 player</a></div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.amazingaudioplayer-mark').remove()
+        })
+    </script>
+</body>
+</html>
