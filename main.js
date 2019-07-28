@@ -12,7 +12,12 @@ var config = {host:'localhost',user:'root',password :'root',database :'mydb'}
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.set('view engine', 'ejs')
+var partials = require('express-partials')
+  app.use(partials())
+  app.set('views', path.join(__dirname, '/public'))
 app.use('/',express.static(path.join(__dirname,'/public/')))
+app.use('/resource', express.static(path.join(__dirname, '/uploads')))
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
@@ -42,7 +47,7 @@ app.post('/album',async (req,res) => {
             var connection = await promise.createConnection(config);
             await connection.beginTransaction()
             let result_album = await connection.query ('INSERT INTO album (nombre,anno) VALUES (?,?);',[data.nombre,data.anno])
-            console.log(result_album)
+
             await connection.query('INSERT INTO album_artista (artista,album) VALUES (?,?)',[data.artista,result_album.insertId])
             cb(null,result_album.insertId + path.extname(file.originalname))
         }
