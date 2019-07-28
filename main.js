@@ -42,8 +42,9 @@ app.post('/album',async (req,res) => {
             var connection = await promise.createConnection(config);
             await connection.beginTransaction()
             let result_album = await connection.query ('INSERT INTO album (nombre,anno) VALUES (?,?);',[data.nombre,data.anno])
+            console.log(result_album)
             await connection.query('INSERT INTO album_artista (artista,album) VALUES (?,?)',[data.artista,result_album.insertId])
-            cb(null,result_album,insertId + path.extname(file.originalname))
+            cb(null,result_album.insertId + path.extname(file.originalname))
         }
     })
 

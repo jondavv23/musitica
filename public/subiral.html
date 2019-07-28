@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>Portada</label>
-                                    <input name="foto" type="file" class="form-control">
+                                    <input name="foto" type="file" id="File" class="form-control">
                                 </div>
                             </div>
                             <div class="text-center">
@@ -213,17 +213,29 @@
                 ReactDOM.render(listaartista(data),document.getElementById("artistas"))
             })
         })
-        $("#artistas").change(ev=>{
-            console.log(ev.target.value)
-            axios.get(`/album/artista/${ev.target.value}`).then(res=>{
-                let {data}=res
-                ReactDOM.render(listaartista(data),document.getElementById("albums"))
-            })
-        })
     
         //Sacar albumes basado en el artista
 
     
+    </script>
+    
+        <script>
+    $("#album").submit((Event)=>{
+    var data = new FormData()
+    $("#album").serializeArray().forEach(e=>{
+        data.append(e.name,e.value)
+    })
+        data.append("tipo","portada")
+        data.append("File",$("#File")[0].files[0])
+        
+        axios.post('/album',data).then(res=>{
+            console.log("Completado")
+        }).catch(Err=>{
+            console.log(Err)
+        })
+        Event.preventDefault()
+        
+    })
     </script>
 </body>
     
