@@ -168,6 +168,17 @@ and artista.ID = ?`,[req.params.artista])
     })
 })
 
+app.get('/cancion/search/:query', async (req,res) => {
+    var connection = await promise.createConnection(config);
+    connection.query (`SELECT * FROM cancion WHERE nombre LIKE '%$?%' OR artista LIKE '%$?%'`,[req.params.query, req.params.query])
+        .then(result => {
+        res.status(200).send(result)
+    }).catch(Err => {
+        console.log(Err)
+        res.status(500).send("Not nice")
+    })
+})
+
 
 //llamar páginas
 app.get('/', function(req, res) {
