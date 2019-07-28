@@ -49,6 +49,7 @@ app.post('/album',async (req,res) => {
             let result_album = await connection.query ('INSERT INTO album (nombre,anno) VALUES (?,?);',[data.nombre,data.anno])
 
             await connection.query('INSERT INTO album_artista (artista,album) VALUES (?,?)',[data.artista,result_album.insertId])
+            await connection.commit()
             cb(null,result_album.insertId + path.extname(file.originalname))
         }
     })
@@ -82,12 +83,14 @@ app.post('/artista',async (req,res) => {
 app.post('/cancion',async (req,res) => {
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
+            console.log(`./uploads/${req.body.tipo}`)
             cb(null,`./uploads/${req.body.tipo}`)
         },
         filename: async (req, file, cb) => {
             var data = req.body
             var connection = await promise.createConnection(config);
             let result = await connection.query ('INSERT INTO cancion (nombre,album,duracion) VALUES (?,?,?);',[data.nombre,data.album,100])
+            console.log(result)
             cb(null,result.insertId + path.extname(file.originalname))
         }
     })
@@ -95,6 +98,7 @@ app.post('/cancion',async (req,res) => {
 
     const upload = multer({storage: storage}).single(`File`)
     upload(req,res, err =>{
+        console.log(err)
         if(err){
             console.log(err)
             res.status(500).send("Not nice")
