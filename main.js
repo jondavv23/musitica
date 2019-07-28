@@ -178,6 +178,18 @@ app.get('/guardadas', function(req, res) {
     res.render('guardadas.ejs');
 });
 
+app.get('/albumes', function(req, res) {
+    res.render('albumes.ejs');
+});
+
+app.get('/albumcom', function(req, res) {
+    res.render('albumcom.ejs');
+});
+
+app.get('/registrar', function(req, res) {
+    res.render('registrar.ejs');
+});
+
 app.get('/subiral', function(req, res) {
     res.render('subiral.ejs');
 });
@@ -190,7 +202,9 @@ app.get('/subircan', function(req, res) {
     res.render('cancion.ejs');
 });
 
-
+app.get('/iframe', function(req, res) {
+    res.render('iframe.ejs');
+});
 
 
 
