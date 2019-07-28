@@ -178,6 +178,10 @@ app.get('/guardadas', function(req, res) {
     res.render('guardadas.ejs');
 });
 
+app.get('/playlist', function(req, res) {
+    res.render('playlist.ejs');
+});
+
 app.get('/albumes', function(req, res) {
     res.render('albumes.ejs');
 });
