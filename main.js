@@ -174,10 +174,21 @@ app.get('/', function(req, res) {
     res.render('login.ejs');
 });
 
+app.get('/guardadas', function(req, res) {
+    res.render('guardadas.ejs');
+});
 
+app.get('/subiral', function(req, res) {
+    res.render('subiral.ejs');
+});
 
+app.get('/subirar', function(req, res) {
+    res.render('subirar.ejs');
+});
 
-
+app.get('/subircan', function(req, res) {
+    res.render('cancion.ejs');
+});
 
 
 
