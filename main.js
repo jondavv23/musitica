@@ -169,7 +169,10 @@ and artista.ID = ?`,[req.params.artista])
 })
 
 
-
+//llamar páginas
+app.get('/', function(req, res) {
+    res.render('login.ejs');
+});
 
 
 
