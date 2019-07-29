@@ -24,6 +24,17 @@ html {
     width:200px
 }
 
+.song_info{
+    display: inline-block;
+    width: 46%;
+    color:white;
+}
+
+.song_image {
+    display: inline-block;
+    vertical-align: top;
+    width: 46%;
+}
 
 /*
  * Remove text-shadow in selection highlight:

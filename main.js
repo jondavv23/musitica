@@ -174,7 +174,13 @@ and artista.ID = ?`,[req.params.artista])
 
 app.get('/cancion/search/:query', async (req,res) => {
     var connection = await promise.createConnection(config);
-    connection.query (`SELECT * FROM cancion WHERE nombre LIKE '%$?%' OR artista LIKE '%$?%'`,[req.params.query, req.params.query])
+    connection.query (`SELECT artista.nombre as artista, cancion.ID as cancionID, album.ID as albumID, cancion.nombre as cancion, album.nombre as album
+                        FROM cancion, album, album_artista, artista
+                        WHERE cancion.album = album.ID
+                        AND album.ID = album_artista.album
+                        AND artista.ID = album_artista.artista
+                        AND LOCATE(?, cancion.nombre) > 0 OR LOCATE(?, artista.nombre) > 0`,
+    [req.params.query, req.params.query])
         .then(result => {
         res.status(200).send(result)
     }).catch(Err => {
